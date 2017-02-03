@@ -1,12 +1,30 @@
 package life;
 
 public class LifeApplication {
-	private final int ROWS = 20;
-	private final int COLS = 30;
-	
-	public static void main(String[] args)
-	{
-		LifeModel model = new LifeModel(ROWS, COLS);
-		model.print();
-	}
+    public LifeApplication()
+    {
+        LifeModel model = new LifeModel(20, 30, 10);
+        printModel(model);
+        model.test(10);
+    }
+
+    public static void main(String[] args) {
+        new LifeApplication();
+    }
+
+    private void printModel(LifeModel model)
+    {
+        System.out.print("0 1 2 3 4 5 6 7 8 9");
+        System.out.print(" 0 1 2 3 4 5 6 7 8 9");
+        System.out.println(" 0 1 2 3 4 5 6 7 8 9");
+        for (int row = 0; row < model.getROWS(); row++) {
+            for (int col = 0; col < model.getCOLS(); col++) {
+                if (model.isLevend(row, col))
+                    System.out.print("X ");
+                else
+                    System.out.print(". ");
+            }
+            System.out.println(row);
+        }
+    }
 }
