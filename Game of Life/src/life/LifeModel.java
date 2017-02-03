@@ -13,11 +13,16 @@ public class LifeModel {
         COLS = cols;
         CHANCE = chance;
         grid = new boolean[ROWS][COLS];
-        final Random gen = new Random();
 
+        init();
+    }
+
+    private void init()
+    {
+        final Random gen = new Random();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
-                // 10% chance to set ALIVE, else DEAD
+                //CHANCE% chance to set ALIVE (true), else DEAD (false)
                 if (row == 0 || row == ROWS - 1 || col == 0 || col == COLS - 1 || gen.nextInt(100) >= CHANCE)
                     grid[row][col] = false;
                 else
@@ -28,18 +33,16 @@ public class LifeModel {
 
     public void volgendeGeneratie() {
         boolean[][] newGrid = new boolean[ROWS][COLS];
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLS; col++)
+        for (int row = 1; row < ROWS-1; row++) {
+            for (int col = 1; col < COLS-1; col++)
                 newGrid[row][col] = evolve(row, col);
         }
         replaceGrid(newGrid);
     }
 
-    private void replaceGrid(boolean[][] newGrid)
-    {
-        for(int row = 0; row < ROWS; row++)
-        {
-            for(int col = 0; col < COLS; col++)
+    private void replaceGrid(boolean[][] newGrid) {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++)
                 grid[row][col] = newGrid[row][col];
         }
     }
@@ -52,10 +55,10 @@ public class LifeModel {
         int num = 0;
 
         for (int y = row - 1; y <= row + 1; y++) {
-            if (y == -1 || y == ROWS) continue;
+            //if (y == -1 || y == ROWS) continue;
             for (int x = col - 1; x <= col + 1; x++) {
-                if (x == -1 || x == COLS) continue;
-                if (isLevend(y, x) && !(y == row && x == col)) num++;
+                //if (x == -1 || x == COLS) continue;
+                if (isLevend(y, x)) num++;
             }
         }
 
@@ -65,7 +68,7 @@ public class LifeModel {
     private boolean evolve(int row, int col) {
         int buren = telBuren(row, col);
         boolean isLevend = isLevend(row, col);
-        if (isLevend) return !(buren < 2 || buren > 3);
+        if (isLevend) return !(buren < 3 || buren > 4); //+1 omdat de cel zelf ook geteld wordt
         else return buren == 3;
     }
 
