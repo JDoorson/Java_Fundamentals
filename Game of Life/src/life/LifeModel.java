@@ -26,6 +26,24 @@ public class LifeModel {
         }
     }
 
+    public void volgendeGeneratie() {
+        boolean[][] newGrid = new boolean[ROWS][COLS];
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++)
+                newGrid[row][col] = evolve(row, col);
+        }
+        replaceGrid(newGrid);
+    }
+
+    private void replaceGrid(boolean[][] newGrid)
+    {
+        for(int row = 0; row < ROWS; row++)
+        {
+            for(int col = 0; col < COLS; col++)
+                grid[row][col] = newGrid[row][col];
+        }
+    }
+
     public boolean isLevend(int row, int col) {
         return grid[row][col];
     }
@@ -44,11 +62,16 @@ public class LifeModel {
         return num;
     }
 
-    public void test(int numTests)
-    {
+    private boolean evolve(int row, int col) {
+        int buren = telBuren(row, col);
+        boolean isLevend = isLevend(row, col);
+        if (isLevend) return !(buren < 2 || buren > 3);
+        else return buren == 3;
+    }
+
+    public void test(int numTests) {
         final Random gen = new Random();
-        for(int i = 0; i<numTests; i++)
-        {
+        for (int i = 0; i < numTests; i++) {
             int row = gen.nextInt(ROWS);
             System.out.print("Row: " + row + "    ");
 
@@ -56,6 +79,7 @@ public class LifeModel {
             System.out.print("Col: " + col + "    ");
 
             System.out.println("Buren: " + telBuren(row, col));
+            System.out.println("Oud: " + isLevend(row, col) + "    nieuw: " + evolve(row, col));
         }
     }
 
