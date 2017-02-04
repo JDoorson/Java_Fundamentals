@@ -2,7 +2,7 @@ package life;
 
 public class LifeApplication {
     public LifeApplication() {
-        LifeModel model = new LifeModel(20, 30, 10);
+        LifeModel model = new LifeModel(30, 20, 10);
         printModel(model);
         runApplication(model, 10);
     }
@@ -19,9 +19,9 @@ public class LifeApplication {
     }
 
     private void printModel(LifeModel model) {
-        for (int row = 1; row < model.getROWS()-1; row++) {
-            for (int col = 1; col < model.getCOLS()-1; col++) {
-                if (model.isLevend(row, col))
+        for (int y = 1; y < model.getY()-1; y++) {
+            for (int x = 1; x< model.getX()-1; x++) {
+                if (model.isLevend(x, y))
                     System.out.print("X ");
                 else
                     System.out.print(". ");

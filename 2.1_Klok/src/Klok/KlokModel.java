@@ -1,9 +1,11 @@
 package Klok;
 
+import java.util.Observable;
+
 /**
  * Created by Jamal on 03/02/2017.
  */
-public class KlokModel {
+public class KlokModel extends Observable{
     private int hour, min;
 
     public KlokModel(int hour, int min) {
@@ -17,6 +19,9 @@ public class KlokModel {
             volgendUur();
             min = 0;
         }
+
+        setChanged();
+        notifyObservers();
     }
 
     private void volgendUur() {

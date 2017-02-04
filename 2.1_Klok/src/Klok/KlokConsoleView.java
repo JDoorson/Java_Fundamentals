@@ -1,18 +1,25 @@
 package Klok;
-import javax.swing.*;
+
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by Jamal on 03/02/2017.
  */
-public class KlokConsoleView {
+public class KlokConsoleView implements Observer {
     private KlokModel model;
 
-    public KlokConsoleView(KlokModel model)
-    {
+    public KlokConsoleView(KlokModel model) {
         this.model = model;
+        model.addObserver(this);
     }
 
-    public void refresh()
-    {
+    @Override
+    public void update(Observable model, Object info) {
+        refresh();
+    }
+
+    public void refresh() {
         System.out.println(model.getHour() + " uren en " + model.getMin() + " minuten.");
     }
 }
