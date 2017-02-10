@@ -1,8 +1,9 @@
 package life;
 
-import java.util.*;
+import java.util.Random;
+import java.util.Observable;
 
-public class LifeModel {
+public class LifeModel extends Observable {
     private final int X;
     private final int Y;
     private final int CHANCE; // % chance to set to ALIVE
@@ -38,6 +39,8 @@ public class LifeModel {
                 newGrid[x][y] = evolve(x, y);
         }
         replaceGrid(newGrid);
+        setChanged();
+        notifyObservers();
     }
 
     private void replaceGrid(boolean[][] newGrid) {
