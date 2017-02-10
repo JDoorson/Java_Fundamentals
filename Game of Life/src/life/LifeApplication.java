@@ -1,16 +1,21 @@
 package life;
 
 public class LifeApplication {
-    public LifeApplication() {
-        LifeModel model = new LifeModel(30, 20, 10);
-        printModel(model);
-        runApplication(model, 10);
-    }
 
     public static void main(String[] args) {
-        new LifeApplication();
-    }
+        LifeModel model = new LifeModel(30, 20, 10);
+        LifeConsoleView view = new LifeConsoleView(model);
 
+        while(true)
+        {
+            model.volgendeGeneratie();
+            view.refresh();
+
+            try{Thread.sleep(2000);}
+            catch(InterruptedException ie){}
+        }
+    }
+/*
     private void runApplication(LifeModel model, int iterations) {
         for (int i = 0; i < iterations; i++) {
             model.volgendeGeneratie();
@@ -30,4 +35,5 @@ public class LifeApplication {
         }
         System.out.println();
     }
+*/
 }
