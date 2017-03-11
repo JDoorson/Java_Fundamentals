@@ -1,10 +1,12 @@
+import javax.swing.JButton;
+
 /**
  * Created by Jamal on 09/03/2017.
  */
-public class Cel {
+public class Cel extends JButton {
     private final int ROW, COL;
     private int value;
-    private boolean isFlagged, isBomb;
+    private boolean isFlagged, isBomb; //FLAG: 🚩   BOMB: 💣
 
     public Cel(int row, int col) {
         ROW = row;
@@ -14,12 +16,18 @@ public class Cel {
         isBomb = false;
     }
 
+    public void reveal() {
+        if (isBomb())
+            setText("\uD83D\uDCA3");
+        else
+            setText(String.valueOf(value));
+    }
+
     public void setValue(int value) {
         this.value = value;
     }
 
-    public int getValue()
-    {
+    public int getValue() {
         return value;
     }
 

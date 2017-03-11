@@ -13,9 +13,11 @@ public class GameConsoleView implements Observer{
         print(model);
     }
 
+    /*
     public static void main(String[] args) {
         new GameConsoleView();
     }
+    */
 
     public void update(Observable observable, Object obj)
     {
