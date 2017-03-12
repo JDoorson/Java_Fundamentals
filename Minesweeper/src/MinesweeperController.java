@@ -1,24 +1,32 @@
-import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
- * Created by Jamal on 11/03/2017.
+ * Created by Jamal on 12/03/2017.
  */
-public class MinesweeperController implements ActionListener {
-    private Cel btn;
-
-    public MinesweeperController(Cel btn)
-    {
-        this.btn = btn;
+public class MinesweeperController implements MouseListener {
+    public MinesweeperController() {
     }
 
-    public MinesweeperController(){}
-
-    public void actionPerformed(ActionEvent e)
-    {
-        Cel btn = (Cel)e.getSource();
-        btn.setEnabled(false);
-        btn.reveal();
+    public void mouseEntered(MouseEvent e) {
     }
+
+    public void mouseClicked(MouseEvent e) {
+        Cel btn = (Cel) e.getSource();
+        if (e.getButton() == MouseEvent.BUTTON1)
+            btn.reveal();
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        Cel btn = (Cel) e.getSource();
+        if (e.getButton() == MouseEvent.BUTTON3)
+            btn.flag();
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
+    public void mousePressed(MouseEvent e) {
+    }
+
 }

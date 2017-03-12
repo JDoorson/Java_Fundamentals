@@ -8,7 +8,7 @@ public class MinesweeperApplication extends JFrame {
 
     public MinesweeperApplication()
     {
-        model = new MinesweeperModel(10, 10, 15);
+        model = new MinesweeperModel(10, 10, 50);
         initFrame();
     }
 

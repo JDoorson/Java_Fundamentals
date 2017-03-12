@@ -6,7 +6,7 @@ import javax.swing.JButton;
 public class Cel extends JButton {
     private final int ROW, COL;
     private int value;
-    private boolean isFlagged, isBomb; //FLAG: 🚩   BOMB: 💣
+    private boolean isFlagged, isBomb;
 
     public Cel(int row, int col) {
         ROW = row;
@@ -17,10 +17,27 @@ public class Cel extends JButton {
     }
 
     public void reveal() {
-        if (isBomb())
+        setEnabled(false);
+
+        if (isBomb()) {
             setText("\uD83D\uDCA3");
-        else
+            gameOver();
+        } else
             setText(String.valueOf(value));
+    }
+
+    public void flag()
+    {
+        isFlagged = !isFlagged;
+
+        if(isFlagged)
+            setText("\uD83D\uDEA9");
+        else
+            setText("");
+    }
+
+    private void gameOver() {
+
     }
 
     public void setValue(int value) {
