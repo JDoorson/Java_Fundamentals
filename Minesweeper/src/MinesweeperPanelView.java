@@ -20,7 +20,7 @@ public class MinesweeperPanelView extends JPanel implements Observer {
             for (int col = 1; col < model.getCOLS() - 1; col++) {
                 Cel btn = grid[row][col];
                 add(btn);
-                btn.addMouseListener(new MinesweeperController());
+                btn.addMouseListener(new MinesweeperController(model));
             }
         }
     }

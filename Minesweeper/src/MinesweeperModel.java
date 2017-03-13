@@ -94,4 +94,9 @@ public class MinesweeperModel extends Observable {
     public Cel[][] getGrid() {
         return grid;
     }
+
+    public Cel getGridCel(int row, int col)
+    {
+        return grid[row][col];
+    }
 }

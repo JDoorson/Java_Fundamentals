@@ -1,4 +1,5 @@
 import javax.swing.JButton;
+import java.util.ArrayList;
 
 /**
  * Created by Jamal on 09/03/2017.
@@ -16,28 +17,34 @@ public class Cel extends JButton {
         isBomb = false;
     }
 
-    public void reveal() {
+    public void reveal(MinesweeperModel model) {
         setEnabled(false);
 
         if (isBomb()) {
             setText("\uD83D\uDCA3");
-            gameOver();
-        } else
+        } else {
             setText(String.valueOf(value));
+        }
     }
 
-    public void flag()
-    {
+    private void cascade(MinesweeperModel model, ArrayList<Cel> checked) {
+        for (int row = ROW - 1; row <= ROW + 1; row++) {
+            for (int col = COL - 1; col <= COL + 1; col++) {
+                Cel c = model.getGridCel(row, col);
+                if (!checked.contains(c)) {
+                    c.reveal(model);
+                }
+            }
+        }
+    }
+
+    public void flag() {
         isFlagged = !isFlagged;
 
-        if(isFlagged)
+        if (isFlagged)
             setText("\uD83D\uDEA9");
         else
             setText("");
-    }
-
-    private void gameOver() {
-
     }
 
     public void setValue(int value) {
@@ -58,5 +65,17 @@ public class Cel extends JButton {
 
     public void setFlagged(boolean isFlagged) {
         this.isFlagged = isFlagged;
+    }
+
+    public boolean isFlagged() {
+        return isFlagged;
+    }
+
+    public int getROW() {
+        return ROW;
+    }
+
+    public int getCOL() {
+        return COL;
     }
 }
