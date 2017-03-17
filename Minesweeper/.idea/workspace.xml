@@ -37,12 +37,12 @@
       <file leaf-file-name="MinesweeperController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MinesweeperController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+            <state relative-caret-position="969">
+              <caret line="57" column="82" lean-forward="false" selection-start-line="57" selection-start-column="82" selection-end-line="57" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#262#263#0" expanded="true" />
-                <element signature="e#296#297#0" expanded="true" />
+                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,15 +64,17 @@
         <entry file="file://$PROJECT_DIR$/src/MinesweeperModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="539">
-              <caret line="99" column="30" lean-forward="false" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
+              <caret line="106" column="21" lean-forward="false" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#MinesweeperModel#0;class#MinesweeperModel#0" expanded="false" />
                 <element signature="docComment;method#init#0;class#MinesweeperModel#0" expanded="false" />
                 <element signature="docComment;method#assignValue#0;class#MinesweeperModel#0" expanded="false" />
                 <element signature="docComment;method#isVisible#0;class#MinesweeperModel#0" expanded="false" />
-                <element signature="e#2919#2920#0" expanded="true" />
-                <element signature="e#2956#2957#0" expanded="true" />
+                <element signature="e#2971#2972#0" expanded="true" />
+                <element signature="e#3008#3009#0" expanded="true" />
+                <element signature="e#3052#3053#0" expanded="true" />
+                <element signature="e#3080#3081#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,8 +111,8 @@
         <option value="$PROJECT_DIR$/src/GameConsoleView.java" />
         <option value="$PROJECT_DIR$/src/MSController.java" />
         <option value="$PROJECT_DIR$/src/MinesweeperPanelView.java" />
-        <option value="$PROJECT_DIR$/src/MinesweeperModel.java" />
         <option value="$PROJECT_DIR$/src/Cel.java" />
+        <option value="$PROJECT_DIR$/src/MinesweeperModel.java" />
         <option value="$PROJECT_DIR$/src/MinesweeperApplication.java" />
         <option value="$PROJECT_DIR$/src/MinesweeperController.java" />
       </list>
@@ -599,16 +601,16 @@
       <updated>1489085021242</updated>
       <workItem from="1489085027434" duration="19426000" />
       <workItem from="1489213924077" duration="4277000" />
-      <workItem from="1489306361814" duration="9069000" />
+      <workItem from="1489306361814" duration="13498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32772000" />
+    <option name="totallyTimeSpent" value="37201000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -619,7 +621,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -678,8 +680,8 @@
           <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -704,8 +706,10 @@
             <element signature="docComment;method#init#0;class#MinesweeperModel#0" expanded="false" />
             <element signature="docComment;method#assignValue#0;class#MinesweeperModel#0" expanded="false" />
             <element signature="docComment;method#isVisible#0;class#MinesweeperModel#0" expanded="false" />
-            <element signature="e#2919#2920#0" expanded="true" />
-            <element signature="e#2956#2957#0" expanded="true" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3008#3009#0" expanded="true" />
+            <element signature="e#3052#3053#0" expanded="true" />
+            <element signature="e#3080#3081#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -774,8 +778,10 @@
             <element signature="docComment;method#init#0;class#MinesweeperModel#0" expanded="false" />
             <element signature="docComment;method#assignValue#0;class#MinesweeperModel#0" expanded="false" />
             <element signature="docComment;method#isVisible#0;class#MinesweeperModel#0" expanded="false" />
-            <element signature="e#2919#2920#0" expanded="true" />
-            <element signature="e#2956#2957#0" expanded="true" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3008#3009#0" expanded="true" />
+            <element signature="e#3052#3053#0" expanded="true" />
+            <element signature="e#3080#3081#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -817,32 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MinesweeperModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="99" column="30" lean-forward="false" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#MinesweeperModel#0;class#MinesweeperModel#0" expanded="false" />
-            <element signature="docComment;method#init#0;class#MinesweeperModel#0" expanded="false" />
-            <element signature="docComment;method#assignValue#0;class#MinesweeperModel#0" expanded="false" />
-            <element signature="docComment;method#isVisible#0;class#MinesweeperModel#0" expanded="false" />
-            <element signature="e#2919#2920#0" expanded="true" />
-            <element signature="e#2956#2957#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MinesweeperPanelView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="71" lean-forward="true" selection-start-line="22" selection-start-column="71" selection-end-line="22" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
@@ -859,6 +839,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MinesweeperModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="106" column="21" lean-forward="false" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#MinesweeperModel#0;class#MinesweeperModel#0" expanded="false" />
+            <element signature="docComment;method#init#0;class#MinesweeperModel#0" expanded="false" />
+            <element signature="docComment;method#assignValue#0;class#MinesweeperModel#0" expanded="false" />
+            <element signature="docComment;method#isVisible#0;class#MinesweeperModel#0" expanded="false" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3008#3009#0" expanded="true" />
+            <element signature="e#3052#3053#0" expanded="true" />
+            <element signature="e#3080#3081#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MinesweeperPanelView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="71" lean-forward="true" selection-start-line="22" selection-start-column="71" selection-end-line="22" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MinesweeperApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -869,12 +877,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MinesweeperController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+        <state relative-caret-position="969">
+          <caret line="57" column="82" lean-forward="false" selection-start-line="57" selection-start-column="82" selection-end-line="57" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
           </folding>
         </state>
       </provider>

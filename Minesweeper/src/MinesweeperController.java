@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -6,42 +7,28 @@ import java.awt.event.MouseListener;
  */
 public class MinesweeperController implements MouseListener {
     MinesweeperModel model;
+
     public MinesweeperController(MinesweeperModel model) {
         this.model = model;
     }
 
     private void reveal(Cel c) {
-        //c.setEnabled(false);
-
         if (c.isBomb()) {
             c.setEnabled(false);
             c.setText("\uD83D\uDCA3");
+            c.setBackground(Color.RED);
             gameOver();
-        } else {
-            if(c.getValue() == 0)
-            {
-                revealSurrounding(c);
-            }
-            else{
+        } else if (c.getValue() == 0) {
+            if (c.isEnabled()) {
                 c.setEnabled(false);
-                c.setText(String.valueOf(c.getValue()));
+                for (int row = c.getROW() - 1; row <= c.getROW() + 1; row++) {
+                    for (int col = c.getCOL() - 1; col <= c.getCOL() + 1; col++)
+                        reveal(model.getGridCel(row, col));
+                }
             }
-        }
-    }
-
-    private void revealSurrounding(Cel c)
-    {
-        final int ROW = c.getROW(), COL = c.getCOL();
-        //if(ROW < 1 || ROW > model.getROWS() || COL < 1 || ROW > model.getCOLS()) return;
-
-        if(c.getValue() == 0 && c.isEnabled())
-        {
+        } else {
             c.setEnabled(false);
-            for(int row = ROW-1; row <= ROW+1; row++)
-            {
-                for(int col = COL-1; col <= COL+1; col++)
-                    reveal(model.getGridCel(row, col));
-            }
+            c.setText(String.valueOf(c.getValue()));
         }
     }
 
@@ -54,9 +41,13 @@ public class MinesweeperController implements MouseListener {
             c.setText("");
     }
 
-    private void gameOver()
-    {
-
+    private void gameOver() {
+        for (Cel bomb : model.getBombs()) {
+            if (!bomb.isFlagged()) {
+                bomb.setEnabled(false);
+                bomb.setText("\uD83D\uDCA3");
+            }
+        }
     }
 
     public void mouseEntered(MouseEvent e) {
@@ -64,7 +55,7 @@ public class MinesweeperController implements MouseListener {
 
     public void mouseClicked(MouseEvent e) {
         Cel c = (Cel) e.getSource();
-        if (e.getButton() == MouseEvent.BUTTON1 && c.isEnabled())
+        if (e.getButton() == MouseEvent.BUTTON1 && c.isEnabled() && !c.isFlagged())
             reveal(c);
     }
 

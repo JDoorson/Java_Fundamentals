@@ -39,8 +39,10 @@ public class MinesweeperModel extends Observable {
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
                 if (isVisible(row, col) && rng.nextInt(100) < CHANCE) {
-                    grid[row][col] = new Cel(row, col);
-                    grid[row][col].setBomb();
+                    Cel c = new Cel(row, col);
+                    grid[row][col] = c;
+                    c.setBomb();
+                    bombs.add(c);
                 }
                 else
                     grid[row][col] = new Cel(row, col);
@@ -98,5 +100,10 @@ public class MinesweeperModel extends Observable {
     public Cel getGridCel(int row, int col)
     {
         return grid[row][col];
+    }
+
+    public ArrayList<Cel> getBombs()
+    {
+        return bombs;
     }
 }
