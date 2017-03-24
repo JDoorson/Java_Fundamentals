@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -7,14 +8,9 @@ public class Boot {
     private ArrayList<BootVakje> vakjes;
     private boolean gezonken;
 
-    public Boot()
+    public Boot(ArrayList<BootVakje> vakjes)
     {
-        vakjes = new ArrayList<>();
+        this.vakjes = vakjes;
         gezonken = false;
-    }
-
-    public void addBootVakje(BootVakje bv)
-    {
-        vakjes.add(bv);
     }
 }

@@ -13,45 +13,88 @@ public class Zee {
         ROWS = rows + 2;
         COLS = cols + 2;
         grid = new Vakje[ROWS][COLS];
+        boten = new ArrayList<>();
 
+        plaatsBoot(5);
+        plaatsBoot(4);
+        plaatsBoot(3);
+        plaatsBoot(2);
+        plaatsBoot(2);
         vulOpMetWater();
     }
 
     private void plaatsBoot(int lengte) {
         Random rng = new Random();
-        ArrayList<BootVakje> boot = new ArrayList<>();
+        ArrayList<BootVakje> boot;
 
-        int startCol;// = rng.nextInt(COLS - lengte - 2) + 1; //Bound: -1 or -2?
-        int startRow;// = rng.nextInt(ROWS - 2) + 1;
+        if (rng.nextInt(2) == 0)
+            boot = maakBootVerticaal(lengte, rng);
+        else
+            boot = maakBootHorizontaal(lengte, rng);
 
-        do {
-            startCol = rng.nextInt(COLS - lengte - 2) + 1; //Bound: -1 or -2?
-            startRow = rng.nextInt(ROWS - 2) + 1;
-        } while (!verifyPlacementH(startRow, startCol, lengte));
-
-
+        boten.add(new Boot(boot));
     }
 
-    private ArrayList<BootVakje> maakBootH(int row, int startCol, int length)
-    {
-        ArrayList<BootVakje> boot = new ArrayList<>();
+    private ArrayList<BootVakje> maakBootVerticaal(int lengte, Random rng) {
+        //Vindt een passende startpositie
+        int startRow, startCol;
+        do {
+            startCol = rng.nextInt(COLS - 2) + 1;
+            startRow = rng.nextInt(ROWS - lengte - 1) + 1;
+        } while (!verifyPlacementVertical(startRow, startCol, lengte));
 
-        for(int col = startCol; col < startCol+length; col++) {
-            grid[row][col] = new BootVakje();
-            boot.add((BootVakje)grid[row][col]);
+        //Maak de BootVakjes aan in 't grid, en de boot aan de boten
+        ArrayList<BootVakje> boot = new ArrayList<>();
+        for (int row = startRow; row < startRow + lengte; row++) {
+            grid[row][startCol] = new BootVakje();
+            boot.add((BootVakje) grid[row][startCol]);
         }
 
         return boot;
     }
 
-    private boolean verifyPlacementH(int startRow, int startCol, int length) {
-        if (grid[startRow][startCol] instanceof BootVakje
+    private ArrayList<BootVakje> maakBootHorizontaal(int lengte, Random rng) {
+        //Vindt een passende startpositie
+        int startRow, startCol;
+        do {
+            startCol = rng.nextInt(COLS - lengte - 1) + 1;
+            startRow = rng.nextInt(ROWS - 2) + 1; //Waarom Col-1, Row-2?
+        } while (!verifyPlacementHorizontal(startRow, startCol, lengte));
+
+        //Maak de BootVakjes aan in 't grid, en de boot aan de boten
+        ArrayList<BootVakje> boot = new ArrayList<>();
+        for (int col = startCol; col < startCol + lengte; col++) {
+            grid[startRow][col] = new BootVakje();
+            boot.add((BootVakje) grid[startRow][col]);
+        }
+
+        return boot;
+    }
+
+    private boolean verifyPlacementVertical(int startRow, int startCol, int length) {
+        if (grid[startRow - 1][startCol] instanceof BootVakje
+                || grid[startRow + length][startCol] instanceof BootVakje) {
+            return false;
+        }
+
+        for (int row = startRow - 1; row <= startRow + length; row++) {
+            for (int col = startCol - 1; col <= startCol + 1; col += 2) {
+                if (grid[row][col] instanceof BootVakje)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean verifyPlacementHorizontal(int startRow, int startCol, int length) {
+        if (grid[startRow][startCol - 1] instanceof BootVakje
                 || grid[startRow][startCol + length] instanceof BootVakje) {
             return false;
         }
 
         for (int row = startRow - 1; row <= startRow + 1; row += 2) {
-            for (int col = startCol - 1; col < startCol + length; col++) {
+            for (int col = startCol - 1; col <= startCol + length; col++) {
                 if (grid[row][col] instanceof BootVakje)
                     return false;
             }

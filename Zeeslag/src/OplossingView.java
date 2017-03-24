@@ -25,5 +25,6 @@ public class OplossingView {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
