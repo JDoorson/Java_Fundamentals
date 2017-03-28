@@ -12,6 +12,9 @@ public class OplossingView {
         print();
     }
 
+    /**
+     * Print de oplossing naar de Console
+     */
     private void print() {
         final Vakje[][] grid = model.getGrid();
         for (int row = 1; row < model.getROWS() - 1; row++) {

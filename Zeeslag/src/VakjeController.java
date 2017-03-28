@@ -14,11 +14,19 @@ public class VakjeController implements MouseListener {
     public void mouseEntered(MouseEvent e) {
     }
 
+    /**
+     * Mouseclicked voor het revealen zodat je de muis nog weg kan trekken
+     * @param e
+     */
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1 && !vakje.marked && !vakje.bekend)
             vakje.reveal();
     }
 
+    /**
+     * MouseReleased omdat het plaatsen van vlaggen ongedaan kan worden
+     * @param e
+     */
     public void mouseReleased(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON3 && !vakje.bekend)
             vakje.mark();

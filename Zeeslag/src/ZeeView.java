@@ -1,7 +1,5 @@
 import javax.swing.JPanel;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by Jamal on 16/03/2017.
@@ -14,9 +12,10 @@ public class ZeeView extends JPanel{
         this.model = model;
         setLayout(new GridLayout(model.getROWS()-2, model.getCOLS()-2, 1,1));
         setBackground(Color.CYAN);
-        init();
+        model.addModelObservers(this);
     }
-
+/*
+    //Verplaats naar Zee klasse methode addModelObserver
     private void init()
     {
         final Vakje[][] grid = model.getGrid();
@@ -29,4 +28,5 @@ public class ZeeView extends JPanel{
             }
         }
     }
+    */
 }
