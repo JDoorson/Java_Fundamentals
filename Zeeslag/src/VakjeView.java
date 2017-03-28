@@ -18,7 +18,7 @@ public class VakjeView extends JPanel implements Observer{
         imgFlag = new ImageIcon("flag.png").getImage();
         this.vakje = vakje;
         vakje.addObserver(this);
-        addMouseListener(new VakjeController(this));
+        addMouseListener(new VakjeController(vakje));
 
         setBackground(Color.BLUE);
     }

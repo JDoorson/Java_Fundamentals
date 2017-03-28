@@ -17,4 +17,12 @@ public class BootVakje extends Vakje {
         geraakt = true;
         super.reveal();
     }
+
+    public void setGezonken()
+    {
+        gezonken = true;
+
+        setChanged();
+        notifyObservers();
+    }
 }

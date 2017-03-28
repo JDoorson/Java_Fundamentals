@@ -8,28 +8,28 @@ import java.util.Observer;
 /**
  * Created by Jamal on 16/03/2017.
  */
-public class BootVakjeView extends VakjeView implements Observer{
+public class BootVakjeView extends VakjeView implements Observer {
     private BootVakje bvakje;
     private Image imgCross;
 
-    public BootVakjeView(BootVakje bvakje)
-    {
+    public BootVakjeView(BootVakje bvakje) {
         super(bvakje);
         this.bvakje = bvakje;
         imgCross = new ImageIcon("cross.png").getImage();
     }
 
-    protected void paintComponent(Graphics g)
-    {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(bvakje.geraakt) {
+        if (bvakje.gezonken) {
+            setBackground(Color.RED);
+            g.drawImage(imgCross, 0, 0, getWidth(), getHeight(), this);
+        } else if (bvakje.geraakt) {
             setBackground(Color.GRAY);
             g.drawImage(imgCross, 0, 0, getWidth(), getHeight(), this);
         }
     }
 
-    public void update(Observable obs, Object obj)
-    {
+    public void update(Observable obs, Object obj) {
         repaint();
     }
 }
