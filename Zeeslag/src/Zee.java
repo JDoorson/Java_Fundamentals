@@ -18,7 +18,7 @@ public class Zee {
         plaatsBoot(5);
         plaatsBoot(4);
         plaatsBoot(3);
-        plaatsBoot(2);
+        plaatsBoot(3);
         plaatsBoot(2);
         vulOpMetWater();
     }

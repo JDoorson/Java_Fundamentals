@@ -7,6 +7,14 @@ public class BootVakje extends Vakje {
 
     public BootVakje()
     {
+        super();
+        geraakt = false;
+        gezonken = false;
+    }
 
+    public void reveal()
+    {
+        geraakt = true;
+        super.reveal();
     }
 }
