@@ -18,6 +18,10 @@ public class BootVakjeView extends VakjeView implements Observer {
         imgCross = new ImageIcon("cross.png").getImage();
     }
 
+    /**
+     * Regelt het veranderen van de kleur en afbeeldingen
+     * @param g
+     */
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (bvakje.gezonken) {

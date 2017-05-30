@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by Jamal on 16/03/2017.
  */
-public class Zee {
+public class Zee implements Serializable{
     private final int ROWS, COLS;
     private Vakje[][] grid;
     private ArrayList<Boot> boten;
@@ -23,6 +24,61 @@ public class Zee {
         vulOpMetWater();
     }
 
+    /**
+     * Voegt alle views toe als Observers
+     * Voegt alle diagonale Vakjes van BootVakjes toe als Observer (voor tentamenvraag 3)
+     * Roept addModelObservers() voor alle boten
+     * @param view
+     */
+    public void addModelObservers(ZeeView view) {
+        for (int row = 1; row < ROWS - 1; row++) {
+            for (int col = 1; col < COLS - 1; col++) {
+                if (grid[row][col] instanceof BootVakje)
+                    view.add(new BootVakjeView((BootVakje) grid[row][col]));
+                else
+                    view.add(new VakjeView(grid[row][col]));
+            }
+        }
+
+        for (int row = 1; row < ROWS - 1; row++) {
+            for (int col = 1; col < COLS - 1; col++) {
+                if (grid[row][col] instanceof BootVakje)
+                {
+                    //Maak alle diagonale een Observer
+                    BootVakje bv = (BootVakje)grid[row][col];
+                    bv.addObserver(grid[row-1][col-1]);
+                    bv.addObserver(grid[row+1][col-1]);
+                    bv.addObserver(grid[row-1][col+1]);
+                    bv.addObserver(grid[row+1][col+1]);
+                }
+            }
+        }
+
+        for(Boot b : boten)
+            b.addModelObservers();
+    }
+
+    /**
+     * Telt het aantal gebruikte bommen
+     * @return
+     */
+    public int telBommen()
+    {
+        int bommenGebruikt = 0;
+        for (int row = 1; row < ROWS - 1; row++) {
+            for (int col = 1; col < COLS - 1; col++) {
+                if(grid[row][col].bekend)
+                    bommenGebruikt++;
+            }
+        }
+
+        return bommenGebruikt;
+    }
+
+    /**
+     * Plaatsts een boot
+     * @param lengte
+     */
     private void plaatsBoot(int lengte) {
         Random rng = new Random();
         ArrayList<BootVakje> boot;
@@ -35,6 +91,12 @@ public class Zee {
         boten.add(new Boot(boot));
     }
 
+    /**
+     * Maakt een verticale boot
+     * @param lengte
+     * @param rng
+     * @return
+     */
     private ArrayList<BootVakje> maakBootVerticaal(int lengte, Random rng) {
         //Vindt een passende startpositie
         int startRow, startCol;
@@ -53,6 +115,12 @@ public class Zee {
         return boot;
     }
 
+    /**
+     * Maakt een horizontale boot
+     * @param lengte
+     * @param rng
+     * @return
+     */
     private ArrayList<BootVakje> maakBootHorizontaal(int lengte, Random rng) {
         //Vindt een passende startpositie
         int startRow, startCol;
@@ -71,6 +139,13 @@ public class Zee {
         return boot;
     }
 
+    /**
+     * Controlleer of de plaatsing van een verticale boot oké is
+     * @param startRow
+     * @param startCol
+     * @param length
+     * @return
+     */
     private boolean verifyPlacementVertical(int startRow, int startCol, int length) {
         if (grid[startRow - 1][startCol] instanceof BootVakje
                 || grid[startRow + length][startCol] instanceof BootVakje) {
@@ -87,6 +162,13 @@ public class Zee {
         return true;
     }
 
+    /**
+     * Controlleer of de plaatsing van een horizontale boot oké is
+     * @param startRow
+     * @param startCol
+     * @param length
+     * @return
+     */
     private boolean verifyPlacementHorizontal(int startRow, int startCol, int length) {
         if (grid[startRow][startCol - 1] instanceof BootVakje
                 || grid[startRow][startCol + length] instanceof BootVakje) {
@@ -104,8 +186,8 @@ public class Zee {
     }
 
     private void vulOpMetWater() {
-        for (int row = 1; row < ROWS - 1; row++) {
-            for (int col = 1; col < COLS - 1; col++) {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
                 if (grid[row][col] == null)
                     grid[row][col] = new Vakje();
             }
@@ -118,6 +200,10 @@ public class Zee {
 
     public int getCOLS() {
         return COLS;
+    }
+
+    public ArrayList<Boot> getBoten() {
+        return boten;
     }
 
     public Vakje[][] getGrid() {
