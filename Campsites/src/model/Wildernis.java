@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,57 +18,125 @@ public class Wildernis {
         grid = new Vakje[grootte][grootte];
 
         initEdges();
+        initGrid();
     }
 
-    private void initGrid() {
-        ArrayList<CelPositie> legeVakjes = new ArrayList<>();
+    public void voegBurenToe(Gras v, int row, int col) {
+        ArrayList<Boom> bVakjes = new ArrayList<>();
+        ArrayList<Gras> gVakjes = new ArrayList<>();
+
         for (int x = 1; x < getGrootte(); x++) {
             for (int y = 1; y < getGrootte(); y++) {
-                if (grid[x][y] == null)
-                    legeVakjes.add(new CelPositie(x, y));
+                if (grid[x][y] instanceof Gras) {
+                    for (int i = row - 1; x <= row + 1; i++) {
+                        for (int j = col - 1; y <= col + 1; j++) {
+                            if(i == 0 && j == 0)
+                                continue;
+
+                            if (grid[i][j] instanceof Gras)
+                                gVakjes.add((Gras) grid[i][j]);
+                            else if (grid[i][j] instanceof Boom)
+                                bVakjes.add((Boom) grid[i][j]);
+                        }
+                    }
+                }
             }
         }
+    }
 
-        Random rng = new Random();
-        int n = rng.nextInt(legeVakjes.size());
-        int x = legeVakjes.get(n).getX();
-        int y = legeVakjes.get(n).getY();
-        Vakje v;
+    private boolean isInBounds(int xPos, int yPos) {
+        return !(xPos == 0 || xPos == getGrootte() || yPos == 0 || yPos == getGrootte());
+    }
 
-        n = rng.nextInt(4);
-        switch (n) {
-            case 0:
-                v = grid[x][y + 1];
-                if (y + 1 != getGrootte() && (v instanceof Gras || v == null)) {
-                    v = new Tent();
-                    grid[x][y + 1] = new Boom();
-                    legeVakjes.remove(n);
+    /**
+     * Collect all empty cels on the visible grid
+     * Randomly select one of the cels out of the empty ones
+     * Randomly select one of the four adjacent cels and check if it's in bounds and empty or grass
+     * Call {@link #assignCels(CelPositie, CelPositie)}
+     * <p>
+     * Repeat until no more empty cels are present on the grid
+     */
+    private void initGrid() {
+        ArrayList<CelPositie> legeVakjes = new ArrayList<>();
+
+        do {
+            legeVakjes.clear();
+
+            for (int x = 1; x < getGrootte(); x++) {
+                for (int y = 1; y < getGrootte(); y++) {
+                    if (grid[x][y] == null) {
+                        legeVakjes.add(new CelPositie(x, y));
+                    }
                 }
-                break;
-            case 1:
-                v = grid[x][y - 1];
-                if (y - 1 != 0 && (v instanceof Gras || v == null)) {
-                    v = new Tent();
-                    grid[x][y - 1] = new Boom();
-                    legeVakjes.remove(n);
-                }
-                break;
-            case 2:
-                v = grid[x - 1][y];
-                if (x - 1 != getGrootte() && (v instanceof Gras || v == null)) {
-                    v = new Tent();
-                    grid[x - 1][y] = new Boom();
-                    legeVakjes.remove(n);
-                }
-                break;
-            case 3:
-                v = grid[x + 1][y];
-                if (x + 1 != getGrootte() && (v instanceof Gras || v == null)) {
-                    v = new Tent();
-                    grid[x + 1][y] = new Boom();
-                    legeVakjes.remove(n);
-                }
-                break;
+            }
+
+            if (legeVakjes.size() <= 0) break;
+
+            Random rng = new Random();
+            int index = rng.nextInt(legeVakjes.size());
+            int x = legeVakjes.get(index).getX();
+            int y = legeVakjes.get(index).getY();
+            CelPositie cPos;
+
+            int n = rng.nextInt(4);
+            switch (n) {
+                case 0:
+                    cPos = new CelPositie(x, y + 1);
+                    if (cPos.getY() != getGrootte()
+                            && (grid[cPos.getX()][cPos.getY()] instanceof Gras
+                            || grid[cPos.getX()][cPos.getY()] == null)) {
+                        assignCels(legeVakjes.get(index), cPos);
+                        legeVakjes.remove(index);
+                    }
+                    break;
+                case 1:
+                    cPos = new CelPositie(x, y - 1);
+                    if (cPos.getY() != 0
+                            && (grid[cPos.getX()][cPos.getY()] instanceof Gras
+                            || grid[cPos.getX()][cPos.getY()] == null)) {
+                        assignCels(legeVakjes.get(index), cPos);
+                        legeVakjes.remove(index);
+                    }
+                    break;
+                case 2:
+                    cPos = new CelPositie(x - 1, y);
+                    if (cPos.getX() != 0
+                            && (grid[cPos.getX()][cPos.getY()] instanceof Gras
+                            || grid[cPos.getX()][cPos.getY()] == null)) {
+                        assignCels(legeVakjes.get(index), cPos);
+                        legeVakjes.remove(index);
+                    }
+                    break;
+                case 3:
+                    cPos = new CelPositie(x + 1, y);
+                    if (cPos.getX() != getGrootte()
+                            && (grid[cPos.getX()][cPos.getY()] instanceof Gras
+                            || grid[cPos.getX()][cPos.getY()] == null)) {
+                        assignCels(legeVakjes.get(index), cPos);
+                        legeVakjes.remove(index);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } while (!legeVakjes.isEmpty());
+    }
+
+    /**
+     * Assign a tent and a tree to two adjacent cels.
+     *
+     * @param tentPos Position of the cel where a tent will be placed
+     * @param boomPos Position of the cel where a tree will be placed
+     */
+    private void assignCels(CelPositie tentPos, CelPositie boomPos) {
+        grid[tentPos.getX()][tentPos.getY()] = new Tent();
+        grid[boomPos.getX()][boomPos.getY()] = new Boom();
+
+        for (int x = tentPos.getX() - 1; x <= tentPos.getX() + 1; x++) {
+            for (int y = tentPos.getY() - 1; y <= tentPos.getY() + 1; y++) {
+                if (grid[x][y] == null)
+                    grid[x][y] = new Gras();
+            }
         }
     }
 
