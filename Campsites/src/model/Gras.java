@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,17 @@ public class Gras extends Vakje {
 
     public Gras()
     {
+        boomBuren = new ArrayList<>();
+        grasBuren = new ArrayList<>();
+    }
 
+    public void addBoom(Boom b)
+    {
+        boomBuren.add(b);
+    }
+
+    public void addGras(Gras g)
+    {
+        grasBuren.add(g);
     }
 }

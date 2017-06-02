@@ -21,25 +21,16 @@ public class Wildernis {
         initGrid();
     }
 
-    public void voegBurenToe(Gras v, int row, int col) {
-        ArrayList<Boom> bVakjes = new ArrayList<>();
-        ArrayList<Gras> gVakjes = new ArrayList<>();
+    public void voegBurenToe(Gras v, int x, int y) {
+        for (int i = x - 1; x <= x + 1; i++) {
+            for (int j = y - 1; y <= y + 1; j++) {
+                if (i == 0 && j == 0)
+                    continue;
 
-        for (int x = 1; x < getGrootte(); x++) {
-            for (int y = 1; y < getGrootte(); y++) {
-                if (grid[x][y] instanceof Gras) {
-                    for (int i = row - 1; x <= row + 1; i++) {
-                        for (int j = col - 1; y <= col + 1; j++) {
-                            if(i == 0 && j == 0)
-                                continue;
-
-                            if (grid[i][j] instanceof Gras)
-                                gVakjes.add((Gras) grid[i][j]);
-                            else if (grid[i][j] instanceof Boom)
-                                bVakjes.add((Boom) grid[i][j]);
-                        }
-                    }
-                }
+                if (grid[i][j] instanceof Gras)
+                    v.addGras((Gras) grid[i][j]);
+                else if (grid[i][j] instanceof Boom)
+                    v.addBoom((Boom) grid[i][j]);
             }
         }
     }
@@ -120,6 +111,13 @@ public class Wildernis {
                     break;
             }
         } while (!legeVakjes.isEmpty());
+
+        for (int x = 1; x < getGrootte(); x++) {
+            for (int y = 1; y < getGrootte(); y++) {
+                if (grid[x][y] instanceof Gras)
+                    voegBurenToe((Gras) grid[x][y], x, y);
+            }
+        }
     }
 
     /**
