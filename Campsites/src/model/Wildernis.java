@@ -13,7 +13,7 @@ public class Wildernis {
     private int aantalTenten;
 
     public Wildernis(int size) {
-        //+1 makes checking surroundings easier
+        //+2 makes checking surroundings easier
         this.grootte = size + 2;
         grid = new Vakje[grootte][grootte];
 
@@ -21,10 +21,18 @@ public class Wildernis {
         initGrid();
     }
 
+    /**
+     * Checks all neightbours of Gras cels. Add neighbouring Gras and Boom cels to their respective lists.
+     *
+     * @param v
+     * @param x
+     * @param y
+     */
     public void voegBurenToe(Gras v, int x, int y) {
-        for (int i = x - 1; x <= x + 1; i++) {
-            for (int j = y - 1; y <= y + 1; j++) {
-                if (i == 0 && j == 0)
+        System.out.println(v.getClass());
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if ((i == 0 && j == 0) || !isInBounds(i, j))
                     continue;
 
                 if (grid[i][j] instanceof Gras)
@@ -35,6 +43,13 @@ public class Wildernis {
         }
     }
 
+    /**
+     * Checks if the given cel-coördinates are on the visible grid
+     *
+     * @param xPos
+     * @param yPos
+     * @return
+     */
     private boolean isInBounds(int xPos, int yPos) {
         return !(xPos == 0 || xPos == getGrootte() || yPos == 0 || yPos == getGrootte());
     }
@@ -46,6 +61,7 @@ public class Wildernis {
      * Call {@link #assignCels(CelPositie, CelPositie)}
      * <p>
      * Repeat until no more empty cels are present on the grid
+     * Loop through the grid, call {@link #voegBurenToe(Gras, int, int)} for all Gras cels
      */
     private void initGrid() {
         ArrayList<CelPositie> legeVakjes = new ArrayList<>();
@@ -114,8 +130,19 @@ public class Wildernis {
 
         for (int x = 1; x < getGrootte(); x++) {
             for (int y = 1; y < getGrootte(); y++) {
-                if (grid[x][y] instanceof Gras)
+                if (grid[x][y] instanceof Gras) {
                     voegBurenToe((Gras) grid[x][y], x, y);
+                    observeSurrounding((Gras) grid[x][y], x, y);
+                }
+            }
+        }
+    }
+
+    private void observeSurrounding(Gras v, int x, int y) {
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if (!(i == x && j == y) && grid[i][j] instanceof Gras)
+                    grid[i][j].addObserver(v);
             }
         }
     }
